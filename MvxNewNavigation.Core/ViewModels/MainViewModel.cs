@@ -35,28 +35,4 @@ namespace MvxNewNavigation.Core.ViewModels
             await _navigationService.Navigate<SecondViewModel>();
         }
     }
-
-    public class SecondViewModel : MvxViewModel
-    {
-        private static int times = 0;
-        public SecondViewModel() // <- ViewModel is being constructed TWICE
-        {
-            times++;
-            Title = "From Constructor " + times;
-        }
-
-        private string _title;
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
-
-        public override Task Initialize()
-        {
-            // Called on a different instance than the one that is bound to view
-            Title = "From Initializer";
-            return base.Initialize();
-        }
-    }
 }
